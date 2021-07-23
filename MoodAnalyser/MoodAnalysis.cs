@@ -9,6 +9,7 @@ namespace MoodAnalyser
     public class MoodAnalyser
     {
         string[] message;
+
         //Parameterised Constructor
         public MoodAnalyser(string[] message)
         {
@@ -17,11 +18,19 @@ namespace MoodAnalyser
 
         public string ReturnMessage()
         {
-            if (message.Contains("sad"))
+            try
             {
-                return "Sad";
+
+                if (message.Contains("sad"))
+                {
+                    return "Sad";
+                }
+                else
+                {
+                    return "Happy";
+                }
             }
-            else
+            catch (ArgumentNullException ex)
             {
                 return "Happy";
             }
