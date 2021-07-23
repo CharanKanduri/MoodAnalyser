@@ -11,7 +11,7 @@ namespace MoodAnalyser
         MyException Exception;
         public enum MyException
         {
-            NULL_ARGUMENT, EMPTY_INPUT_MRSSAGE
+            NULL_ARGUMENT, EMPTY_INPUT_MRSSAGE, CLASS_NOT_FOUND, CONSTRUCTOR_NOT_FOUND
         }
 
         public CustomException(MyException exception, string message) : base(message)
