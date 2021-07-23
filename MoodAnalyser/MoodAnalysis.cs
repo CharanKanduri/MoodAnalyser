@@ -20,7 +20,14 @@ namespace MoodAnalyser
         {
             try
             {
-
+                if (message.Contains(string.Empty))
+                {
+                    throw new CustomException(CustomException.MyException.EMPTY_INPUT_MRSSAGE, "Mood should not be Empty");
+                }
+                if (message.Contains(null))
+                {
+                    throw new CustomException(CustomException.MyException.NULL_ARGUMENT, "Mood should not be Null");
+                }
                 if (message.Contains("sad"))
                 {
                     return "Sad";
@@ -32,6 +39,7 @@ namespace MoodAnalyser
             }
             catch (ArgumentNullException ex)
             {
+
                 return "Happy";
             }
         }
