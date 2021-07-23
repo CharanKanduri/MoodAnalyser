@@ -35,5 +35,29 @@ namespace MoodAnalyser
                 throw new CustomException(CustomException.MyException.CONSTRUCTOR_NOT_FOUND, "Class does not have such Constructor");
             }
         }
+
+        public object CreatingParameterisedObjectWithMethod(string className, string constructorName, string[] message)
+        {
+            Type type = typeof(MoodAnalyser);
+            if (type.Name.Equals(className) || type.FullName.Equals(className))
+            {
+                try
+                {
+                    ConstructorInfo constructorInfo = type.GetConstructor(new[] { typeof(string[]) });
+                    object obj = constructorInfo.Invoke(new object[] { message });
+                    return obj;
+                }
+                catch
+                {
+                    throw new CustomException(CustomException.MyException.CLASS_NOT_FOUND, "Class does not exist");
+
+                }
+
+            }
+            else
+            {
+                throw new CustomException(CustomException.MyException.CONSTRUCTOR_NOT_FOUND, "Class does not have such Constructor");
+            }
+        }
     }
 }
