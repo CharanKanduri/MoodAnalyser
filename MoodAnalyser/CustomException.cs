@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoodAnalyser
+namespace Mood_Analyser
 {
-    class CustomException : Exception
+    public class CustomException : Exception
     {
         MyException Exception;
         public enum MyException
         {
-            NULL_ARGUMENT, EMPTY_INPUT_MRSSAGE, CLASS_NOT_FOUND, CONSTRUCTOR_NOT_FOUND
+            NULL_ARGUMENT, EMPTY_INPUT_MRSSAGE, CLASS_NOT_FOUND, CONSTRUCTOR_NOT_FOUND, METHOD_NOT_FOUND
         }
 
         public CustomException(MyException exception, string message) : base(message)

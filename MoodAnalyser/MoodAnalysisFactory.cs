@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Reflection;
 
-namespace MoodAnalyser
+namespace Mood_Analyser
 {
-    class MoodAnalysisFactory
+    public class MoodAnalysisFactory
     {
         public object CreatingObjectWithMethod(string className, string constructorName)
         {
@@ -38,7 +38,7 @@ namespace MoodAnalyser
 
         public object CreatingParameterisedObjectWithMethod(string className, string constructorName, string[] message)
         {
-            Type type = typeof(MoodAnalyser);
+            Type type = typeof(Mood_Analyser.MoodAnalyser);
             if (type.Name.Equals(className) || type.FullName.Equals(className))
             {
                 try
@@ -57,6 +57,24 @@ namespace MoodAnalyser
             else
             {
                 throw new CustomException(CustomException.MyException.CONSTRUCTOR_NOT_FOUND, "Class does not have such Constructor");
+            }
+        }
+
+        public string InvokeMethod(string methodname, string[] message)
+        {
+            try
+            {
+                MoodAnalysisFactory moodAnalyserFactory = new MoodAnalysisFactory();
+                Type type = typeof(MoodAnalyser);
+                object methodObject = moodAnalyserFactory.CreatingParameterisedObjectWithMethod("Mood_Analyser.MoodAnalyser", "MoodAnalyser", message);
+                MethodInfo methodInfo = type.GetMethod(methodname);
+                string method = (string)methodInfo.Invoke(methodObject, null);
+                return method;
+
+            }
+            catch (NullReferenceException)
+            {
+                throw new CustomException(CustomException.MyException.METHOD_NOT_FOUND, "No method found");
             }
         }
     }
